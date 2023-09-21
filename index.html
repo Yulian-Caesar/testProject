@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test project</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+        .active {
+            order: -1;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+
+<script type="text/javascript">
+
+    let arrDivs = [];
+    for(let i = 1; i <= 100; i++) {
+        let el = document.createElement('div');
+        el.textContent = `It's div # ${i}`;
+        el.classList.add("item")
+        arrDivs.push(el);
+    }
+    document.body.append(...arrDivs);
+    
+
+    function toggleClass(e) {
+        e.target.classList.toggle('active');
+    }
+    document.body.addEventListener("click", toggleClass)
+
+</script>
+</html>
