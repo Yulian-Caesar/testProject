@@ -52,7 +52,7 @@
         if (!currentElement.classList.contains("item")) return;
         
         let cloneEl = currentElement.cloneNode(true);
-        arrDivsActive.push(cloneEl);
+        arrDivsActive.unshift(cloneEl);
         currentElement.style.display = 'none';
         wrapperItemsActive.prepend(...arrDivsActive);
     }
