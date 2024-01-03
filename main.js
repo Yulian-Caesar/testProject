@@ -1,3 +1,4 @@
+
 // let yulikNumber = 'Wed Dec 06 2023 00:00:00 GMT+0200';
 // let yulikNumber = ("12/13/2023 00:00:00").slice(0, 10).replaceAll("/", "-")
 
@@ -81,44 +82,46 @@
 // yulik(obj)
 
 $('.input-datepicker').datepicker({
-    format: 'yyyy-mm-dd',
+    format: "yyyy-mm-dd",
     todayBtn: 'linked',
     clearBtn: true,
     autoclose: true,
     todayHighlight: true,
     calendarWeeks: true,
     weekStart: 1,
-    disableTouchKeyboard: true,
+    disableTouchKeyboard: false
 });
+
 
 var input = document.querySelectorAll('.js-date')[0];
 
+
 var dateInputMask = function dateInputMask(elm) {
-    elm.addEventListener('keypress', function (e) {
-        if (e.keyCode < 47 || e.keyCode > 57) {
-            e.preventDefault();
-        }
+  elm.addEventListener('keypress', function(e) {
+    if(e.keyCode < 47 || e.keyCode > 57) {
+      e.preventDefault();
+    }
+    
+    var len = elm.value.length;
+    
+    // If we're at a particular place, let the user type the slash
+    // i.e., 12/12/1212
+    if(len !== 1 || len !== 3) {
+      if(e.keyCode == 47) {
+        e.preventDefault();
+      }
+    }
+    
+    // If they don't add the slash, do it for them...
+    if(len === 2) {
+      elm.value += '/';
+    }
 
-        var len = elm.value.length;
-
-        // If we're at a particular place, let the user type the slash
-        // i.e., 12/12/1212
-        if (len !== 1 || len !== 3) {
-            if (e.keyCode == 47) {
-                e.preventDefault();
-            }
-        }
-
-        // If they don't add the slash, do it for them...
-        if (len === 2) {
-            elm.value += '/';
-        }
-
-        // If they don't add the slash, do it for them...
-        if (len === 5) {
-            elm.value += '/';
-        }
-    });
+    // If they don't add the slash, do it for them...
+    if(len === 5) {
+      elm.value += '/';
+    }
+  });
 };
-
+  
 dateInputMask(input);
