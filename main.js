@@ -80,33 +80,15 @@
 // // "[{\"Id\":238,\"AssemblyId\":2382717,\"Text\":\"sdfsdfsdfsdfsdf\",\"CreateDate\":\"2023-12-13T16:54:13.2135868\",\"CreatedBy\":\"test.avatar.mail.2@gmail.com\",\"Checked\":true,\"CheckedBy\":\"test.avatar.mail.2@gmail.com\",\"CheckedDate\":\"2023-12-15T19:42:43.5610159\"},{\"Id\":239,\"AssemblyId\":2382717,\"Text\":\"second comment\",\"CreateDate\":\"2023-12-13T16:54:31.5841303\",\"CreatedBy\":\"test.avatar.mail.2@gmail.com\",\"Checked\":false,\"CheckedBy\":\"test.avatar.mail.2@gmail.com\",\"CheckedDate\":\"2023-12-15T19:42:35.9500438\"},{\"Id\":253,\"AssemblyId\":2382717,\"Text\":\"fgfghfghfgf\",\"CreateDate\":\"2023-12-18T14:02:12.8121464\",\"CreatedBy\":\"test.avatar.mail.2@gmail.com\",\"Checked\":false},{\"Id\":257,\"AssemblyId\":2382717,\"Text\":\"11111\",\"CreateDate\":\"2023-12-18T15:11:11.8584303\",\"CreatedBy\":\"test.avatar.mail.2@gmail.com\",\"Checked\":false}]"
 // yulik(obj)
 
-$('.input-datepicker')
-    .datepicker({
-        format: 'yyyy-mm-dd',
-        todayBtn: 'linked',
-        clearBtn: true,
-        autoclose: true,
-        todayHighlight: true,
-        calendarWeeks: true,
-        weekStart: 1,
-        disableTouchKeyboard: false,
-    })
-    .on('show', function (e) {
-        /**
-         * hack to disable touch keyboard with blur() method,
-         * but only if the datepicker is not visible (to minimize accessibility problems)
-         * so with a second click, the keyboard appears
-         */
-        if (window.navigator.msMaxTouchPoints || 'ontouchstart' in document) {
-            if (!isDatepickerVisible) {
-                $('.input-datepicker', $(this))[0].blur();
-            }
-        }
-        isDatepickerVisible = true;
-    })
-    .on('hide', function (e) {
-        isDatepickerVisible = false;
-    });
+$('.input-datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    todayBtn: 'linked',
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true,
+    calendarWeeks: true,
+    weekStart: 1,
+});
 
 $('.input-datepicker2').datepicker({
     format: 'yyyy-mm-dd',
@@ -116,8 +98,11 @@ $('.input-datepicker2').datepicker({
     todayHighlight: true,
     calendarWeeks: true,
     weekStart: 1,
-    disableTouchKeyboard: true,
 });
+
+if ($(window).width() < 768) {
+    $('.input-datepicker').attr('readonly', 'true');
+}
 
 var input = document.querySelectorAll('.js-date')[0];
 
