@@ -1,0 +1,9 @@
+body {
+	/*background: conic-gradient(from 180deg at 50% 50%, rgba(254, 214, 34, 0.00) 0deg, #FDF50E 100deg);*/
+	/*background-color: black;*/
+	height: 800px;
+}
+
+.day--highlight {
+	background-color: red;
+}

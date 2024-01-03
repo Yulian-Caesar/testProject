@@ -1,74 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test project</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Test project</title>
+        <script src="https://maps.googleapis.com/maps/api/js?key=[YOUR_API_KEY]"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+        <!-- <link rel="stylesheet" type="text/css" href="./iziToast.css">
+        <link rel="stylesheet" type="text/css" href="./styles-fancy_box.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="./bootstrap-datepicker.css">
+  
+    </head>
 
-        .item {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid black;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div id="wrapperActive" class="wrapperActive">
-        
-    </div>
-    <div id="wrapper" class="wrapper">
-        
-    </div>
-</body>
+    <body>
+        <input type="text" class="input-datepicker" >
+        <input type="text" class="input-datepicker" >
+       
+<input type="text" class="js-date" >
+<input
+    type="text"
+    name="date"
+    placeholder="yyyy/mm/dd"
+    onkeyup="
+        var v = this.value;
+        if (v.match(/^\d{4}$/) !== null) {
+            this.value = v + '/';
+        } else if (v.match(/^\d{4}\/\d{2}$/) !== null) {
+            this.value = v + '/';
+        }"
+    maxlength="10"
+>
+    </body>
 
-<script type="text/javascript">
-    let wrapperItemsActive = document.querySelector('#wrapperActive');
-    let wrapperItems = document.querySelector('#wrapper');
+    <script src="https://unpkg.com/imask"></script>
+  <!--   <script type="text/javascript" src="./fancy_box.umd.js"></script>
+    <script type="text/javascript" src="./iziToast.min.js"></script> -->
+    <script type="text/javascript" src="./bootstrap-datepicker.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script> -->
+    <script type="text/javascript" src="main.js"></script>
 
-    let arrDivsActive = [];
-    let arrDivs = [];
-    for(let i = 0; i <= 99; i++) {
-        let el = document.createElement('div');
-        el.textContent = `It's div # ${i}`;
-        el.setAttribute("order", i);
-        el.classList.add("item");
-        arrDivs.push(el);
-    }
-    wrapperItems.prepend(...arrDivs);
-
-    
-    function addActiveElement(e) {
-        let currentElement = e.target;
-        if (!currentElement.classList.contains("item")) return;
-        
-        let cloneEl = currentElement.cloneNode(true);
-        arrDivsActive.unshift(cloneEl);
-        currentElement.style.display = 'none';
-        wrapperItemsActive.prepend(...arrDivsActive);
-    }
-
-    function removeActiveElement(e) {
-        let currentElement = e.target;
-        if (!currentElement.classList.contains("item")) return;
-
-        arrDivsActive.splice(arrDivsActive.indexOf(currentElement), 1);
-        arrDivs[currentElement.attributes.order.value].style.display = 'flex';
-        wrapperItemsActive.innerHTML = '';
-        wrapperItemsActive.prepend(...arrDivsActive);   
-    }
-
-    wrapperItems.addEventListener('click', addActiveElement);
-    wrapperItemsActive.addEventListener('click', removeActiveElement);
-
-</script>
 </html>
