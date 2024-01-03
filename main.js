@@ -88,6 +88,7 @@ $('.input-datepicker').datepicker({
     todayHighlight: true,
     calendarWeeks: true,
     weekStart: 1,
+    disableTouchKeyboard: false,
 });
 
 var input = document.querySelectorAll('.js-date')[0];
