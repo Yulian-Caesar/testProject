@@ -10,7 +10,7 @@ $datePickers.datepicker({
     calendarWeeks: true,
     weekStart: 1,
     keyboardNavigation: false,
-    enableOnReadonly: true
+    disableTouchKeyboard: true
 });
 
 // if ($(window).width() < 768) {
