@@ -80,7 +80,10 @@
 // // "[{\"Id\":238,\"AssemblyId\":2382717,\"Text\":\"sdfsdfsdfsdfsdf\",\"CreateDate\":\"2023-12-13T16:54:13.2135868\",\"CreatedBy\":\"test.avatar.mail.2@gmail.com\",\"Checked\":true,\"CheckedBy\":\"test.avatar.mail.2@gmail.com\",\"CheckedDate\":\"2023-12-15T19:42:43.5610159\"},{\"Id\":239,\"AssemblyId\":2382717,\"Text\":\"second comment\",\"CreateDate\":\"2023-12-13T16:54:31.5841303\",\"CreatedBy\":\"test.avatar.mail.2@gmail.com\",\"Checked\":false,\"CheckedBy\":\"test.avatar.mail.2@gmail.com\",\"CheckedDate\":\"2023-12-15T19:42:35.9500438\"},{\"Id\":253,\"AssemblyId\":2382717,\"Text\":\"fgfghfghfgf\",\"CreateDate\":\"2023-12-18T14:02:12.8121464\",\"CreatedBy\":\"test.avatar.mail.2@gmail.com\",\"Checked\":false},{\"Id\":257,\"AssemblyId\":2382717,\"Text\":\"11111\",\"CreateDate\":\"2023-12-18T15:11:11.8584303\",\"CreatedBy\":\"test.avatar.mail.2@gmail.com\",\"Checked\":false}]"
 // yulik(obj)
 
-$('.input-datepicker').datepicker({
+ var $datePickers = $('.input-datepicker');
+ console.log($datePickers)
+
+$datePickers.datepicker({
     format: 'yyyy-mm-dd',
     todayBtn: 'linked',
     clearBtn: true,
@@ -88,8 +91,8 @@ $('.input-datepicker').datepicker({
     todayHighlight: true,
     calendarWeeks: true,
     weekStart: 1,
+    disableTouchKeyboard: true
 });
-
 $('.input-datepicker2').datepicker({
     format: 'yyyy-mm-dd',
     todayBtn: 'linked',
@@ -98,40 +101,30 @@ $('.input-datepicker2').datepicker({
     todayHighlight: true,
     calendarWeeks: true,
     weekStart: 1,
+    keyboardNavigation: false,
+    disableTouchKeyboard: true
 });
 
 if ($(window).width() < 768) {
-    $('.input-datepicker').attr('readonly', 'true');
+    $datePickers.attr('readonly', 'true');
 }
 
-var input = document.querySelectorAll('.js-date')[0];
-
-var dateInputMask = function dateInputMask(elm) {
-    elm.addEventListener('keypress', function (e) {
+$datePickers.each(index => {
+  $datePickers[index].addEventListener('keypress', function (e) {
         if (e.keyCode < 47 || e.keyCode > 57) {
             e.preventDefault();
         }
-
-        var len = elm.value.length;
-
-        // If we're at a particular place, let the user type the slash
-        // i.e., 12/12/1212
-        if (len !== 1 || len !== 3) {
-            if (e.keyCode == 47) {
-                e.preventDefault();
-            }
+        var len = this.value.length;
+        if (len === 4) {
+            this.value += '-';
         }
-
-        // If they don't add the slash, do it for them...
-        if (len === 2) {
-            elm.value += '/';
-        }
-
-        // If they don't add the slash, do it for them...
-        if (len === 5) {
-            elm.value += '/';
+        if (len === 7) {
+            this.value += '-';
         }
     });
-};
+})
 
-dateInputMask(input);
+
+
+let text = document.getElementsByClassName("demo"); 
+text[0].textContent = text[0].textContent.replace("Microsoft", "W3Schools");
