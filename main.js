@@ -1,5 +1,5 @@
 
- var $datePickers = $('.input-datepicker3');
+ var $datePickers = $('.input-datepicker5');
 
 $datePickers.datepicker({
     format: 'yyyy-mm-dd',
@@ -9,20 +9,8 @@ $datePickers.datepicker({
     todayHighlight: true,
     calendarWeeks: true,
     weekStart: 1,
-    disableTouchKeyboard: true,
-    enableOnReadonly: true
-});
-$('.input-datepicker4').datepicker({
-    format: 'yyyy-mm-dd',
-    todayBtn: 'linked',
-    clearBtn: true,
-    autoclose: true,
-    todayHighlight: true,
-    calendarWeeks: true,
-    weekStart: 1,
     keyboardNavigation: false,
-    disableTouchKeyboard: true,
-    enableOnReadonly: false
+    enableOnReadonly: true
 });
 
 // if ($(window).width() < 768) {
