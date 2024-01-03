@@ -7,39 +7,42 @@
         <title>Test project</title>
         <script src="https://maps.googleapis.com/maps/api/js?key=[YOUR_API_KEY]"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./style.css">
+        <link rel="stylesheet" type="text/css" href="./style.css" />
         <!-- <link rel="stylesheet" type="text/css" href="./iziToast.css">
         <link rel="stylesheet" type="text/css" href="./styles-fancy_box.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"> -->
-        <link rel="stylesheet" type="text/css" href="./bootstrap-datepicker.css">
-  
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="./bootstrap-datepicker.css"
+        />
     </head>
 
     <body>
-        <input type="text" class="input-datepicker" >
-        <input type="text" class="input-datepicker" >
-       
-<input type="text" class="js-date" >
-<input
-    type="text"
-    name="date"
-    placeholder="yyyy/mm/dd"
-    onkeyup="
+        <input type="text" class="input-datepicker" readonly />
+        <input type="text" class="input-datepicker" readonly="true" />
+        <input type="text" class="input-datepicker" readonly="readonly" />
+
+        <input type="text" class="js-date" />
+        <input
+            type="text"
+            name="date"
+            placeholder="yyyy/mm/dd"
+            onkeyup="
         var v = this.value;
         if (v.match(/^\d{4}$/) !== null) {
             this.value = v + '/';
         } else if (v.match(/^\d{4}\/\d{2}$/) !== null) {
             this.value = v + '/';
         }"
-    maxlength="10"
->
+            maxlength="10"
+        />
     </body>
 
     <script src="https://unpkg.com/imask"></script>
-  <!--   <script type="text/javascript" src="./fancy_box.umd.js"></script>
+    <!--   <script type="text/javascript" src="./fancy_box.umd.js"></script>
     <script type="text/javascript" src="./iziToast.min.js"></script> -->
     <script type="text/javascript" src="./bootstrap-datepicker.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script> -->
     <script type="text/javascript" src="main.js"></script>
-
 </html>
