@@ -9,7 +9,8 @@ $datePickers.datepicker({
     todayHighlight: true,
     calendarWeeks: true,
     weekStart: 1,
-    disableTouchKeyboard: true
+    disableTouchKeyboard: true,
+    enableOnReadonly: true
 });
 $('.input-datepicker4').datepicker({
     format: 'yyyy-mm-dd',
@@ -20,7 +21,8 @@ $('.input-datepicker4').datepicker({
     calendarWeeks: true,
     weekStart: 1,
     keyboardNavigation: false,
-    disableTouchKeyboard: true
+    disableTouchKeyboard: true,
+    enableOnReadonly: false
 });
 
 // if ($(window).width() < 768) {
