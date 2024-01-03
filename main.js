@@ -11,6 +11,17 @@ $datePickers.datepicker({
     weekStart: 1,
     disableTouchKeyboard: true
 });
+$('.input-datepicker4').datepicker({
+    format: 'yyyy-mm-dd',
+    todayBtn: 'linked',
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true,
+    calendarWeeks: true,
+    weekStart: 1,
+    keyboardNavigation: false,
+    disableTouchKeyboard: true
+});
 
 // if ($(window).width() < 768) {
 //     $datePickers.attr('readonly', 'true');
