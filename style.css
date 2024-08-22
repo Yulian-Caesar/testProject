@@ -3,7 +3,15 @@ body {
 	/*background-color: black;*/
 	height: 800px;
 }
-
-.day--highlight {
-	background-color: red;
+.item {
+	padding: 10px;
+	margin: 5px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+}
+.selected {
+	background-color: yellow;
+}
+.active-mode {
+	border: 2px solid blue;
 }

@@ -1,34 +1,48 @@
+const items = document.querySelectorAll('.item');
+const activeModeEl = document.querySelector('.active-move-value');
+let touchTimer;
+let activeMode = false;
+let selectedItemIds = [];
+activeModeEl.innerHTML = activeMode;
 
- var $datePickers = $('.input-datepicker5');
-
-$datePickers.datepicker({
-    format: 'yyyy-mm-dd',
-    todayBtn: 'linked',
-    clearBtn: true,
-    autoclose: true,
-    todayHighlight: true,
-    calendarWeeks: true,
-    weekStart: 1,
-    keyboardNavigation: false,
-    disableTouchKeyboard: true
-});
-
-// if ($(window).width() < 768) {
-//     $datePickers.attr('readonly', 'true');
-// }
-
-$datePickers.each(index => {
-  $datePickers[index].addEventListener('keypress', function (e) {
-        if (e.keyCode < 47 || e.keyCode > 57) {
-            e.preventDefault();
-        }
-        var len = this.value.length;
-        if (len === 4) {
-            this.value += '-';
-        }
-        if (len === 7) {
-            this.value += '-';
+items.forEach(item => {
+    item.addEventListener('touchstart', (event) => {
+        if(activeMode === false) {
+            touchTimer = setTimeout(() => {
+                activateMode(item);
+                item.classList.add('selected');
+                selectedItemIds.push(item.getAttribute('id'))
+            }, 1000);
         }
     });
-})
 
+    item.addEventListener('touchend', () => {
+        clearTimeout(touchTimer);
+    });
+
+});
+
+function activateMode(state) {
+    activeMode = state;
+    activeModeEl.innerHTML = state;
+}
+
+// Optionally, deactivate mode after some action or another click
+document.addEventListener('click', (event) => {
+    if (!activeMode) return;
+    let clickedEl = event.target;
+    if (clickedEl.classList.contains('item')) {
+        if(clickedEl.classList.contains('selected')) {
+            clickedEl.classList.remove('selected');
+            selectedItemIds = selectedItemIds.filter(item => item != clickedEl.getAttribute('id'))
+            console.log(selectedItemIds)
+            if(!selectedItemIds.length) {
+                alert('empty selected items')
+                activateMode(false)
+            }
+        } else {
+            clickedEl.classList.add('selected');
+            selectedItemIds.push(clickedEl.getAttribute('id'))
+        }
+    } 
+});
