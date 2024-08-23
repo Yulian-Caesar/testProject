@@ -1,44 +1,18 @@
 const items = document.querySelectorAll('.item');
-let touchTimer;
 let activeMode = false;
 let selectedItemIds = [];
 
-let holdTime = 500;
-
-const itemList = document.querySelector('.item-list');
-
-itemList.addEventListener('touchstart', function(event) {
-    // Check if the event target is an item
-    if (event.target && event.target.matches('.item')) {
-        let item = event.target;
-        // activateMode(true);
-        // event.target.classList.add('selected');
-        // selectedItemIds.push(event.target.getAttribute('id'))
-        
-        setTimeout(() => {
-            activateMode(true);
-            item.classList.add('selected');
-            selectedItemIds.push(item.getAttribute('id'))
-        }, 500);
-    }
-  });
-
-// items.forEach(item => {
-//     item.addEventListener('touchstart', (event) => {
-//         if(activeMode === false) {
-//             touchTimer = setTimeout(() => {
-//                 activateMode(item);
-//                 item.classList.add('selected');
-//                 selectedItemIds.push(item.getAttribute('id'))
-//             }, holdTime);
-//         }
-//     });
-
-//     item.addEventListener('touchend', () => {
-//         clearTimeout(touchTimer);
-//     });
-
-// });
+items.forEach(item => {
+    item.addEventListener('touchstart', (event) => {
+        if(activeMode === false) {
+            setTimeout(() => {
+                activateMode(true);
+                item.classList.add('selected');
+                selectedItemIds.push(item.getAttribute('id'))
+            }, 500);
+        }
+    });
+});
 
 function activateMode(state) {
     activeMode = state;
