@@ -5,6 +5,7 @@ let selectedItemIds = [];
 
 let holdTime = 500;
 
+
 items.forEach(item => {
     item.addEventListener('touchstart', (event) => {
         if(activeMode === false) {
@@ -26,35 +27,31 @@ function activateMode(state) {
     activeMode = state;
 }
 
-// Optionally, deactivate mode after some action or another click
-document.addEventListener('click', (event) => {
-    if (!activeMode) return;
-    let clickedEl = event.target;
-    if (clickedEl.classList.contains('item')) {
-        if(clickedEl.classList.contains('selected')) {
-            clickedEl.classList.remove('selected');
-            selectedItemIds = selectedItemIds.filter(item => item != clickedEl.getAttribute('id'))
-            console.log(selectedItemIds)
-            if(!selectedItemIds.length) {
-                alert('empty selected items')
-                activateMode(false)
-            }
-        } else {
-            clickedEl.classList.add('selected');
-            selectedItemIds.push(clickedEl.getAttribute('id'))
+function model_installation_assembly_multi_select(element) {
+    if(element.classList.contains('selected')) {
+        element.classList.remove('selected');
+        selectedItemIds = selectedItemIds.filter(item => item != element.getAttribute('id'))
+        console.log(selectedItemIds)
+        if(!selectedItemIds.length) {
+            alert('empty selected items')
+            activateMode(false)
         }
-    } 
-});
-
-
-function myFunction(e) {
-    if(activeMode) {
-        console.log(e.target)
     } else {
-        model_installation_assembly_select()
+        element.classList.add('selected');
+        selectedItemIds.push(element.getAttribute('id'))
     }
 }
 
-function model_installation_assembly_select() {
+
+function myFunction(item) {
+    if(activeMode) {
+        model_installation_assembly_multi_select(item)
+    } else {
+        model_installation_assembly_select(item)
+    }
+}
+
+function model_installation_assembly_select(item) {
     console.log('work')
+    console.log(item)
 }
