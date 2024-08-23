@@ -9,7 +9,7 @@ const itemList = document.querySelector('.item-list');
 
 itemList.addEventListener('touchstart', function(event) {
     // Check if the event target is an item
-    if (event.target && event.target.matches('.item')) {
+    if (event.target && event.target.matches('.item') && activeMode === false) {
         activateMode(true);
         event.target.classList.add('selected');
         selectedItemIds.push(event.target.getAttribute('id'))
