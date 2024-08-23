@@ -1,17 +1,25 @@
 const items = document.querySelectorAll('.item');
+let touchTimer;
 let activeMode = false;
 let selectedItemIds = [];
+
+let holdTime = 500;
 
 items.forEach(item => {
     item.addEventListener('touchstart', (event) => {
         if(activeMode === false) {
-            setTimeout(() => {
+            touchTimer = setTimeout(() => {
                 activateMode(true);
                 item.classList.add('selected');
                 selectedItemIds.push(item.getAttribute('id'))
-            }, 500);
+            }, holdTime);
         }
     });
+
+    item.addEventListener('touchend', () => {
+        clearTimeout(touchTimer);
+    });
+
 });
 
 function activateMode(state) {
