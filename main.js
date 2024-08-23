@@ -9,11 +9,17 @@ const itemList = document.querySelector('.item-list');
 
 itemList.addEventListener('touchstart', function(event) {
     // Check if the event target is an item
-    if (event.target && event.target.matches('.item') && activeMode === false) {
-        activateMode(true);
-        event.target.classList.add('selected');
-        selectedItemIds.push(event.target.getAttribute('id'))
-      // You can add more logic here to handle the touch event
+    if (event.target && event.target.matches('.item')) {
+        let item = event.target;
+        // activateMode(true);
+        // event.target.classList.add('selected');
+        // selectedItemIds.push(event.target.getAttribute('id'))
+        
+        setTimeout(() => {
+            activateMode(true);
+            item.classList.add('selected');
+            selectedItemIds.push(item.getAttribute('id'))
+        }, 500);
     }
   });
 
