@@ -1,30 +1,41 @@
 const items = document.querySelectorAll('.item');
-const activeModeEl = document.querySelector('.active-move-value');
 let touchTimer;
 let activeMode = false;
 let selectedItemIds = [];
-activeModeEl.innerHTML = activeMode;
 
-items.forEach(item => {
-    item.addEventListener('touchstart', (event) => {
-        if(activeMode === false) {
-            touchTimer = setTimeout(() => {
-                activateMode(item);
-                item.classList.add('selected');
-                selectedItemIds.push(item.getAttribute('id'))
-            }, 1000);
-        }
-    });
+let holdTime = 500;
 
-    item.addEventListener('touchend', () => {
-        clearTimeout(touchTimer);
-    });
+const itemList = document.querySelector('.item-list');
 
-});
+itemList.addEventListener('touchstart', function(event) {
+    // Check if the event target is an item
+    if (event.target && event.target.matches('.item')) {
+        activateMode(true);
+        event.target.classList.add('selected');
+        selectedItemIds.push(event.target.getAttribute('id'))
+      // You can add more logic here to handle the touch event
+    }
+  });
+
+// items.forEach(item => {
+//     item.addEventListener('touchstart', (event) => {
+//         if(activeMode === false) {
+//             touchTimer = setTimeout(() => {
+//                 activateMode(item);
+//                 item.classList.add('selected');
+//                 selectedItemIds.push(item.getAttribute('id'))
+//             }, holdTime);
+//         }
+//     });
+
+//     item.addEventListener('touchend', () => {
+//         clearTimeout(touchTimer);
+//     });
+
+// });
 
 function activateMode(state) {
     activeMode = state;
-    activeModeEl.innerHTML = state;
 }
 
 // Optionally, deactivate mode after some action or another click
@@ -46,3 +57,16 @@ document.addEventListener('click', (event) => {
         }
     } 
 });
+
+
+function myFunction(e) {
+    if(activeMode) {
+        console.log(e.target)
+    } else {
+        model_installation_assembly_select()
+    }
+}
+
+function model_installation_assembly_select() {
+    console.log('work')
+}
